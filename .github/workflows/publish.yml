@@ -1,31 +1,44 @@
 name: Publish to NPM
+
 on:
   push:
     branches:
-      - master
+      - master  # Или main, если у вас основная ветка называется main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20]
+        node-version: [20]  # Версия Node.js, которую вы используете
+
     steps:
+      # Шаг для клонирования репозитория
       - uses: actions/checkout@v3
+
+      # Шаг для настройки PNPM
       - uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 9  # Версия PNPM, которую вы хотите использовать
+
+      # Настройка Node.js и кэширование PNPM
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: 'pnpm'  # Кэширование зависимостей PNPM
+
+      # Установка зависимостей
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
+
+      # Сборка библиотеки (удалено дублирование)
       - name: Build lib
         run: pnpm run build
-      - name: Build lib
-        run: pnpm run build
-      - uses: JS-DevTools/npm-publish@v3
+
+      # Публикация пакета на NPM
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
-          access: 'public'
+          token: ${{ secrets.NPM_PUBLISH_TOKEN }}  # Ваш секретный токен для публикации
+          access: 'public'  # Доступ для публичного пакета
