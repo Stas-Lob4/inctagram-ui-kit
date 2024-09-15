@@ -19,6 +19,11 @@
     "preview": "vite preview",
     "build-storybook": "storybook build"
   },
+  "keywords": [],
+  "author": "Stanislav Lobchuk",
+  "license": "ISC",
+  "bugs": "https://github.com/Stas-Lob4/inctagram-ui-lib/issues",
+  "homepage": "https://github.com/Stas-Lob4/inctagram-ui-lib",
   "dependencies": {
     "@radix-ui/react-slider": "^1.1.2",
     "clsx": "^2.0.0",
