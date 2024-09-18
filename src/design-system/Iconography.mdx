@@ -1,0 +1,58 @@
+import { IconGallery, IconItem, Markdown } from '@storybook/blocks';
+import * as IconsCommon from '../../src/assets/icons/components/common'
+import * as IconsFill from '../../src/assets/icons/components/fill'
+import * as IconsOutline from '../../src/assets/icons/components/outline'
+import IconsUsage from './md/icons-usage.md?raw'
+import IconsColor from './md/icons-color.md?raw'
+
+# Iconography
+
+<br />
+
+## Usage
+
+All the icons in the design system are available as React components. You can use them like this:
+
+<Markdown>{IconsUsage}</Markdown>
+
+## Properties
+
+All available attributes for the `<svg>` element are available as attributes for icons, with the exception of the viewBox.
+
+To change the color, you can use the css `color` property, as you would for text (for all icons, the `fill` property has the `currentColor` value)
+
+For example, to make an icon red, you need to use `inline-styles` or the `className` attribute:
+<Markdown>{IconsColor}</Markdown>
+
+## Gallery
+
+<br />
+#### Common
+<br />
+<IconGallery>
+  {Object.entries(IconsCommon).map(([name, Icon]) => (
+      <IconItem key={name} name={name}>
+        <Icon />
+      </IconItem>
+  ))}
+</IconGallery>
+<br />
+#### Fill
+<br />
+<IconGallery>
+  {Object.entries(IconsFill).map(([name, Icon]) => (
+      <IconItem key={name} name={name}>
+        <Icon />
+      </IconItem>
+  ))}
+</IconGallery>
+<br />
+#### Outline
+<br />
+<IconGallery>
+  {Object.entries(IconsOutline).map(([name, Icon]) => (
+      <IconItem key={name} name={name}>
+        <Icon />
+      </IconItem>
+  ))}
+</IconGallery>

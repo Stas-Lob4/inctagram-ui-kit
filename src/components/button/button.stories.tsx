@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
   },
   component: Button,
   tags: ['autodocs'],
-  title: 'Primitive/Button',
+  title: 'UI/Button',
 }
 
 export default meta

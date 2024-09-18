@@ -32,7 +32,7 @@ const meta: Meta<typeof Typography.Bold14> = {
     },
   },
   tags: ['autodocs'],
-  title: 'Primitive/Typography',
+  title: 'UI/Typography',
 }
 
 export default meta
