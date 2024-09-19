@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as *;
+
+.toastRoot {
+  position: fixed;
+  bottom: 24px;
+  left: min(170px, 13%);
+
+  display: flex;
+
+  max-width: 40ch;
+  max-height: 40vh;
+
+  .alertRoot {
+    width: 100%;
+  }
+
+  .message {
+    @include thin-scrollbar;
+
+    overflow: auto;
+    max-height: 100%;
+  }
+
+  @media (width <= 768px) {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  @media (width <= 600px) {
+    right: 20px;
+    max-width: none;
+  }
+}
