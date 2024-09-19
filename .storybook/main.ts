@@ -12,9 +12,7 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
-  docs: {
-    autodocs: true,
-  },
+  docs: {},
   viteFinal: config => {
     config.build = config.build || {}
     config.build.sourcemap = false
