@@ -1,5 +1,10 @@
 import type { Preview } from '@storybook/react'
 import '../src/styles/index.scss'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
+import '@fontsource/inter/700.css'
+import { themes } from '@storybook/theming'
 
 const preview: Preview = {
   parameters: {
@@ -25,19 +30,24 @@ const preview: Preview = {
     backgrounds: {
       values: [
         // 👇 Default values
-        { name: 'Dark', value: '#000' },
-        { name: 'Light', value: '#F7F9F2' },
+        { name: 'dark', value: '#000' },
+        { name: 'light', value: '#F7F9F2' },
         // 👇 Add your own
-        { name: 'Maroon', value: '#400' },
+        { name: 'maroon', value: '#400' },
       ],
       // 👇 Specify which background is shown by default
-      default: 'Dark',
+      default: 'dark',
+    },
+    docs: {
+      theme: themes.dark,
     },
     initialGlobals: {
       // 👇 Set the initial background color
       backgrounds: { value: '#000' },
     },
   },
+
+  tags: ['autodocs'],
 }
 
 export default preview
