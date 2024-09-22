@@ -1,0 +1,98 @@
+@import '../../styles/mixins';
+
+.root {
+  @include flex($align: center);
+  gap: 24px;
+  margin: 5px;
+}
+
+.pagination {
+  @include flex($align: center);
+  gap: 12px;
+
+  .item {
+    cursor: pointer;
+    user-select: none;
+
+    display: flex;
+    align-items: center;
+
+    min-width: 24px;
+    width: min-content;
+    padding: 0 5px;
+    height: 24px;
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+
+    transition: all 0.2s linear;
+
+    .right {
+      transform: rotate(180deg);
+    }
+
+    &.dots:hover {
+      cursor: default;
+      color: var(--color-light-100);
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: var(--color-dark-500);
+      color: var(--color-light-100);
+    }
+
+    &:focus-visible {
+      border: var(--color-accent-500) solid 2px;
+    }
+
+    &.selected {
+      cursor: pointer;
+      background-color: var(--color-light-100);
+
+      span {
+        color: var(--color-dark-900);
+      }
+
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: var(--color-dark-300);
+
+      &:hover {
+        cursor: default;
+        background-color: transparent;
+      }
+
+      .left,
+      .right {
+        cursor: default;
+        color: var(--color-dark-100);
+      }
+    }
+  }
+}
+
+.selectContainer {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.select {
+  gap: 0;
+}
+
+@include media-breakpoint('tablet-s') {
+  .container {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  .pagination {
+    gap: 3px;
+  }
+}
