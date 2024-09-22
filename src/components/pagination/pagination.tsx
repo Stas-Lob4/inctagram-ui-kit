@@ -4,27 +4,33 @@ import s from './pagination.module.scss'
 
 import { ArrowIos } from '../../assets/icons'
 import { Button } from '../button'
+import { IconButton } from '../icon-button'
+import { Select, SelectProps } from '../select'
 import { Typography } from '../typography'
 import { usePagination } from './usePagination'
 
+type PaginationSlot = 'pagination' | 'root' | 'selectContainer'
+export type PaginationClasses = { [P in PaginationSlot]?: string }
+
 type Props = {
-  className?: string
+  classes?: PaginationClasses
   currentPage: number
   onChangePage: (page: number) => void
   pageSize: number
   siblingCount?: number
   totalCount: number
   translates?: { onPage: string; show: string }
-}
+} & Omit<SelectProps, 'classes' | 'labelField' | 'pagination'>
 
 export const Pagination = ({
-  className,
+  classes,
   currentPage,
   onChangePage,
   pageSize,
   siblingCount = 1,
   totalCount,
-  translates, // ...selectProps
+  translates,
+  ...selectProps
 }: Props) => {
   const paginationRange = usePagination({
     currentPage,
@@ -33,12 +39,14 @@ export const Pagination = ({
     totalCount,
   })
 
+  const cls = getClassNames(classes)
+
   const selectForPage = (
-    <Typography.Regular14 asComponent={'div'} className={s.selectContainer}>
-      {translates ? translates.show : 'Show'}
-      {/*<Select {...selectProps} className={s.select} pagination />*/}
-      {translates ? translates.onPage : 'on page'}
-    </Typography.Regular14>
+    <div className={cls.selectContainer}>
+      <Typography.Regular14>{translates ? translates.show : 'Show'}</Typography.Regular14>
+      <Select classes={{ root: s.select }} pagination {...selectProps} />
+      <Typography.Regular14>{translates ? translates.onPage : 'on page'}</Typography.Regular14>
+    </div>
   )
 
   if (currentPage === 0 || paginationRange.length < 2) {
@@ -57,15 +65,15 @@ export const Pagination = ({
   const isLastPage = currentPage === paginationRange[paginationRange.length - 1]
 
   return (
-    <div className={clsx(s.container, className)}>
-      <div className={s.pagination}>
-        <button
+    <div className={cls.root}>
+      <div className={cls.pagination}>
+        <IconButton
           className={clsx(s.item, { [s.disabled]: isFirstPage })}
           disabled={isFirstPage}
           onClick={handleClickPrev}
         >
           <ArrowIos className={s.left} height={20} width={20} />
-        </button>
+        </IconButton>
         {paginationRange.map((num, i) => {
           if (num === 0) {
             return (
@@ -80,23 +88,30 @@ export const Pagination = ({
 
           return (
             <Button
-              className={clsx(s.item, { [s.selected]: isCurrentPage })}
+              className={clsx(s.item, isCurrentPage && s.selected)}
               key={i}
               onClick={handleChangePage}
+              variant={isCurrentPage ? 'primary' : 'tertiary'}
             >
-              <Typography.Regular14 asComponent={'span'}>{num}</Typography.Regular14>
+              <Typography.Regular14>{num}</Typography.Regular14>
             </Button>
           )
         })}
-        <button
+        <IconButton
           className={clsx(s.item, { [s.disabled]: isLastPage })}
           disabled={isLastPage}
           onClick={handleClickNext}
         >
           <ArrowIos className={s.right} height={20} width={20} />
-        </button>
+        </IconButton>
       </div>
       {selectForPage}
     </div>
   )
 }
+
+const getClassNames = (classes?: PaginationClasses) => ({
+  pagination: clsx(s.pagination, classes?.pagination),
+  root: clsx(s.root, classes?.root),
+  selectContainer: clsx(s.selectContainer, classes?.selectContainer),
+})

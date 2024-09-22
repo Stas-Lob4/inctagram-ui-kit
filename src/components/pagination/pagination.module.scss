@@ -1,16 +1,14 @@
 @import '../../styles/mixins';
 
-.container {
-  display: flex;
+.root {
+  @include flex($align: center);
   gap: 24px;
-  align-items: center;
   margin: 5px;
 }
 
 .pagination {
-  display: flex;
+  @include flex($align: center);
   gap: 12px;
-  align-items: center;
 
   .item {
     cursor: pointer;
@@ -19,8 +17,10 @@
     display: flex;
     align-items: center;
 
-    padding: 0 8px;
-
+    min-width: 24px;
+    width: min-content;
+    padding: 0 5px;
+    height: 24px;
     background-color: transparent;
     border: none;
     border-radius: 2px;
@@ -39,17 +39,22 @@
     }
 
     &:hover {
-      background-color: var(--kebab-dark-500);
+      background-color: var(--color-dark-500);
+      color: var(--color-light-100);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-primary-900);
+      border: var(--color-accent-500) solid 2px;
     }
 
     &.selected {
       cursor: pointer;
-      color: var(--color-dark-900);
       background-color: var(--color-light-100);
+
+      span {
+        color: var(--color-dark-900);
+      }
+
     }
 
     &.disabled {
@@ -72,15 +77,13 @@
 
 .selectContainer {
   display: flex;
-  gap: 8px;
   align-items: center;
-  justify-content: center;
 
-  white-space: nowrap;
+  gap: 8px;
+}
 
-  & .select {
-    width: 3.2rem;
-  }
+.select {
+  gap: 0;
 }
 
 @include media-breakpoint('tablet-s') {
