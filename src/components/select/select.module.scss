@@ -1,0 +1,138 @@
+@use '../../styles/mixins' as *;
+
+.root {
+  @include flex($direction: column, $justify: null, $align: null);
+  gap: 12px;
+}
+
+.trigger {
+  @include inline-flex($justify: space-between);
+
+  text-wrap: nowrap;
+
+  cursor: pointer;
+  position: relative;
+
+  gap: 12px;
+
+  box-sizing: border-box;
+  border: none;
+  border-radius: 2px;
+  outline: 1px solid var(--color-dark-100);
+
+  transition: all 0.1s linear;
+
+  &[data-state='open'] {
+    background-color: var(--color-dark-500);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    outline: 1px solid;
+
+    & .icon {
+      rotate: 90deg;
+      transition: rotate 0.2s linear;
+    }
+  }
+
+  &[data-state='closed'] {
+    & .icon {
+      rotate: 270deg;
+      transition: rotate 0.2s linear;
+    }
+  }
+
+  &:hover {
+    color: var(--color-light-100);
+    outline: 1px solid var(--color-light-900);
+  }
+
+  &[data-disabled] {
+    cursor: inherit;
+    color: var(--color-dark-100);
+    outline: 1px solid var(--color-dark-100);
+
+    & .icon {
+      color: var(--color-dark-100);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    transition: all 1ms linear;
+  }
+}
+
+.content {
+  z-index: 500;
+}
+
+.viewport {
+  cursor: pointer;
+
+  width: var(--radix-select-trigger-width);
+
+  background-color: var(--color-dark-500);
+  border-radius: 0 0 2px 2px;
+  outline: 1px solid;
+}
+
+.label {
+  color: var(--color-light-900);
+}
+
+.item {
+  outline: none;
+
+  &[data-highlighted] {
+    background-color: var(--color-dark-300);
+    transition: all 0.2s linear;
+  }
+}
+
+.text {
+  @include flex($justify: null );
+  text-wrap: nowrap;
+  cursor: pointer;
+  gap: 12px;
+  line-height: var(--line-height-m);
+
+  &.small {
+    line-height: unset;
+  }
+}
+
+.withPagination {
+  padding: 4px 2px 4px 6px;
+  font-size: var(--font-size-s);
+  width: 50px;
+
+  gap: 0;
+
+  & .icon {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+.withoutPagination {
+  padding: 6px 10px 6px 12px;
+  transition: all 0.1s linear;
+
+  & .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    color: var(--color-light-700);
+  }
+}
+
+
+.triggerWithIcon {
+  gap: 24px;
+}
+
+.rootWithIcon {
+  width: min-content;
+}
