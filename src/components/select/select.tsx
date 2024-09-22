@@ -17,7 +17,7 @@ export type SelectBoxOption = {
   value: string
 }
 
-type SelectProps = {
+export type SelectProps = {
   classes?: SelectClasses
   labelField?: string
   options?: SelectBoxOption[]
@@ -31,7 +31,9 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectP
 
     return (
       <div className={cls.root}>
-        <Typography.Regular14 className={cls.label}>{labelField}</Typography.Regular14>
+        {labelField && (
+          <Typography.Regular14 className={cls.label}>{labelField}</Typography.Regular14>
+        )}
         <SelectRadix.Root {...rest}>
           <SelectRadix.Trigger className={cls.trigger} ref={ref}>
             <SelectRadix.Value placeholder={placeholder} />
