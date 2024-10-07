@@ -34,9 +34,17 @@
   }
 
   &:focus {
-    padding: 4px 22px;
-    border: 2px solid var(--color-accent-700);
-    border-radius: 2px;
+    outline: 2px solid var(--color-accent-700);
+    animation: removeOutline 1s forwards;
+  }
+
+  @keyframes removeOutline {
+    0% {
+      outline: 2px solid var(--color-accent-700);
+    }
+    100% {
+      outline: none;
+    }
   }
 
   &:hover {
