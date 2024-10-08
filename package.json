@@ -1,7 +1,7 @@
 {
   "name": "@wild-animals/ui-kit",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -33,8 +33,8 @@
   "keywords": [],
   "author": "Stanislav Lobchuk",
   "license": "ISC",
-  "bugs": "https://github.com/Stas-Lob4/inctagram-ui-lib/issues",
-  "homepage": "https://github.com/Stas-Lob4/inctagram-ui-lib",
+  "bugs": "https://github.com/Stas-Lob4/inctagram-ui-kit",
+  "homepage": "https://inctagram-ui-kit-green.vercel.app/",
   "dependencies": {
     "@fontsource/inter": "^5.0.15",
     "@radix-ui/react-checkbox": "^1.1.1",
