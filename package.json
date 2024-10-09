@@ -11,15 +11,15 @@
     "dist/style.css"
   ],
   "exports": {
-    ".": "./dist/index3.js",
+    ".": "./dist/index2.js",
     "./dist/style.css": "./dist/style.css",
     "./components": {
       "types": "./dist/components/index.d.ts",
-      "default": "./dist/index2.js"
+      "default": "./dist/index3.js"
     },
     "./icons": {
       "types": "./dist/assets/icons/index.d.ts",
-      "default": "./dist/index3.js"
+      "default": "./dist/index.js"
     },
     "./types": "./dist/types/index.d.ts"
   },
